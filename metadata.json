@@ -1,0 +1,6 @@
+{
+  "name": "KodeMester AI - Kodebygger, Integrator & Dokumentasjon",
+  "description": "Generer fungerende kildekode, grundig dokumentasjon og pedagogiske forklaringer på norsk for alle programmeringsspråk basert på enkle beskrivelser. Integrer eksterne kodebiter og utvid funksjonalitet sømløst.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
