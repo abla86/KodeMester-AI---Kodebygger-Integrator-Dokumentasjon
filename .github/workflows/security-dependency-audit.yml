@@ -17,10 +17,17 @@ jobs:
         run: |
           set -euo pipefail
           found=0
-          while IFS= read -r package; do
+          while IFS= read -r -d '' package; do
             found=1
             dir="$(dirname "$package")"
-            npm install --package-lock-only --ignore-scripts --no-audit --prefix "$dir"
-            npm audit --audit-level=high --prefix "$dir"
-          done < <(find . -name package.json -not -path '*/node_modules/*' -not -path './.git/*' -print)
-          [ "$found" -eq 0 ] && echo "No npm projects found."
+            echo "::group::Audit $dir"
+            pushd "$dir" >/dev/null
+            npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+            npm audit --audit-level=high
+            popd >/dev/null
+            echo "::endgroup::"
+          done < <(find . -type f -name package.json -not -path '*/node_modules/*' -not -path './.git/*' -print0)
+          if [[ "$found" -eq 0 ]]; then
+            echo "::error::No npm projects found."
+            exit 1
+          fi
