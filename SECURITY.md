@@ -1,21 +1,16 @@
 # Security Policy
 
-## Supported Versions
+## Scope and limitations
+KodeMester is an AI-assisted code-generation and integration tool. Generated code and project scans are advisory; they do not prove correctness, security, licensing compliance or production readiness. Do not treat the application as a secure sandbox for executing untrusted code.
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+## Secrets and data
+- Keep API keys and tokens in server-side secret storage or local environment variables excluded from Git.
+- Do not submit customer secrets, production credentials, patient data or confidential source code to external AI providers without approval and a data-processing review.
+- Review generated scripts before running them. Execute untrusted code only in a disposable, isolated environment without production credentials.
+- Review exported archives for secrets, local paths and confidential data.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+## Reporting
+Use GitHub private vulnerability reporting if enabled; otherwise contact the maintainer privately. Include the affected commit and reproduction steps, but redact secrets and personal data.
 
-## Reporting a Vulnerability
-
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+## Verification
+Build and static analysis checks are not a complete security audit or proof that generated code is safe.
